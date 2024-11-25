@@ -2,7 +2,11 @@ export default function Footer() {
   return (
     <footer className="p-8 flex justify-between border-t bg-primary text-secondary">
       <p>&copy; 2024 Critix</p>
-      <a href="https://github.com/ausathdzil/ausath-juli-web-intermediate-2024">
+      <a
+        href="https://github.com/ausathdzil/ausath-juli-web-intermediate-2024"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
         <svg
           className="hover:scale-105 transition-transform"
           data-testid="geist-icon"

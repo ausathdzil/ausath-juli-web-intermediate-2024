@@ -91,7 +91,7 @@ export default function SignupForm() {
       </div>
 
       <Button className="w-full" type="submit" disabled={pending}>
-        {pending && <Loader2 className="animate-spin mr-2" />}
+        {pending && <Loader2 className="animate-spin" />}
         <span>Signup</span>
       </Button>
 

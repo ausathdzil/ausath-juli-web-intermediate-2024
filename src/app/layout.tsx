@@ -32,7 +32,9 @@ export default function RootLayout({
         className={`${inter.variable} ${merriweather.variable} antialiased flex flex-col`}
       >
         <Header />
-        <main className="p-8 min-h-[calc(100vh-162px)] flex flex-col justify-center items-center gap-8">{children}</main>
+        <main className="p-8 min-h-[calc(100vh-162px)] flex flex-col justify-center items-center gap-8">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

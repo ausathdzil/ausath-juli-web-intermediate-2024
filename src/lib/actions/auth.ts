@@ -11,6 +11,7 @@ import {
 import { createSession, deleteSession } from '@/lib/session';
 import bcrypt from 'bcrypt';
 import { eq } from 'drizzle-orm';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function login(state: LoginFormState, formData: FormData) {
