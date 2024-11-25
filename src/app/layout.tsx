@@ -1,10 +1,19 @@
+import Footer from '@/components/layout/footer';
+import Header from '@/components/layout/header';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Merriweather } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-inter',
+});
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '700'],
+  variable: '--font-merriweather',
 });
 
 export const metadata: Metadata = {
@@ -19,7 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body
+        className={`${inter.variable} ${merriweather.variable} antialiased flex flex-col`}
+      >
+        <Header />
+        <main className="p-8 min-h-[calc(100vh-162px)] flex flex-col justify-center items-center gap-8">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
