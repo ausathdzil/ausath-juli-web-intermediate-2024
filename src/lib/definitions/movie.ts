@@ -28,5 +28,5 @@ export type MovieResult = {
 
 export type MovieSearchParams = {
   query: string;
-  page: number;
+  page?: number;
 };
