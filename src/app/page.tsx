@@ -63,17 +63,17 @@ async function HomeMovies() {
       <ul className="grid grid-cols-3 gap-8">
         <Suspense fallback={<div>Loading...</div>}>
           {movies?.map((movie) => (
-            <li key={movie.id}>
-              <figure className="text-center space-y-2">
+            <li className="max-w-[300px] text-center space-y-2" key={movie.id}>
+              <div className="relative w-[300px] h-[450px]">
                 <Image
-                  className="rounded-lg"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt={`${movie.title} poster`}
-                  width={300}
-                  height={500}
+                  className="rounded-lg object-cover"
+                  fill
                 />
-                <figcaption>{movie.title}</figcaption>
-              </figure>
+              </div>
+              <p className="max-w-full">{movie.title}</p>
             </li>
           ))}
         </Suspense>

@@ -10,7 +10,7 @@ export type Movie = {
   original_language: string;
   original_title: string;
   overview: string;
-  poster_path: string;
+  poster_path?: string;
   release_date: string;
   runtime: number;
   status: string;

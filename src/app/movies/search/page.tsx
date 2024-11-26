@@ -1,7 +1,9 @@
 import MovieSearchForm from '@/components/movies/search-form';
+import SearchPagination from '@/components/movies/search-pagination';
 import { searchMovies } from '@/lib/data';
 import { MovieSearchParams } from '@/lib/definitions/movie';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 type SearchParams = Promise<MovieSearchParams>;
@@ -14,6 +16,7 @@ export default async function Page({
   const { query, page } = await searchParams;
   const data = await searchMovies({ query, page });
   const movies = data?.results;
+  const pages = data?.total_pages;
 
   return (
     <>
@@ -22,25 +25,46 @@ export default async function Page({
           <MovieSearchForm />
         </Suspense>
       </section>
-      <section className="space-y-8">
-        <ul className="grid grid-cols-3 gap-8">
+      <section className="grow flex flex-col items-center justify-between gap-8">
+        <ul className="grid grid-cols-4 gap-8">
           <Suspense fallback={<div>Loading...</div>}>
             {movies?.map((movie) => (
-              <li key={movie.id}>
-                <figure className="max-w-[300px] text-center space-y-2">
+              <li
+                className="max-w-[250px] text-center space-y-2"
+                key={movie.id}
+              >
+                <div className="relative w-[250px] h-[375px]">
                   <Image
-                    className="rounded-lg"
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    src={
+                      movie.poster_path != null
+                        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                        : `/poster-placeholder.png`
+                    }
                     alt={`${movie.title} poster`}
-                    width={300}
-                    height={500}
+                    className="rounded-lg object-cover"
+                    fill
                   />
-                  <figcaption className="max-w-full">{movie.title}</figcaption>
-                </figure>
+                </div>
+                <p className="max-w-full">{movie.title}</p>
               </li>
             ))}
           </Suspense>
         </ul>
+        {!movies?.length && (
+          <Image
+            src="/movie.png"
+            alt="Movie"
+            width={300}
+            height={450}
+            quality={100}
+            priority
+            unoptimized
+          />
+        )}
+        <Suspense fallback={<div>Loading...</div>}>
+          {pages !== undefined && <SearchPagination totalPages={pages} />}
+        </Suspense>
       </section>
     </>
   );
