@@ -20,14 +20,14 @@ export default async function Page({
 
   return (
     <>
-      <section className="w-full">
+      <section className="w-full text-center">
         <Suspense fallback={<div>Loading...</div>}>
           <MovieSearchForm />
         </Suspense>
       </section>
-      <section className="grow flex flex-col items-center justify-between gap-8">
-        <ul className="grid grid-cols-4 gap-8">
-          <Suspense fallback={<div>Loading...</div>}>
+      <section className="w-full grow flex flex-col items-center justify-between gap-8">
+        <Suspense fallback={<div>Loading...</div>}>
+          <ul className="max-w-[80%] flex flex-wrap justify-center gap-8">
             {movies?.map((movie) => (
               <li
                 className="max-w-[250px] text-center space-y-2"
@@ -49,8 +49,8 @@ export default async function Page({
                 <p className="max-w-full">{movie.title}</p>
               </li>
             ))}
-          </Suspense>
-        </ul>
+          </ul>
+        </Suspense>
         {!movies?.length && (
           <Image
             src="/movie.png"
