@@ -29,13 +29,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${merriweather.variable} antialiased flex flex-col`}
+        className={`${inter.variable} ${merriweather.variable} antialiased`}
       >
-        <Header />
-        <main className="p-8 min-h-[calc(100vh-162px)] flex flex-col items-center gap-8">
-          {children}
-        </main>
-        <Footer />
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="p-8 grow flex flex-col items-center gap-8">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
