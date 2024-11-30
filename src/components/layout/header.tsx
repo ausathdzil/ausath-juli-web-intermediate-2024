@@ -1,13 +1,9 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
+import NavLinks from '@/components/layout/nav-links';
 import { Film } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default function Header() {
-  const pathname = usePathname();
-
   return (
     <header className="px-8 py-4 border-b">
       <nav className="flex justify-between items-center">
@@ -19,17 +15,9 @@ export default function Header() {
           <span>Critix</span>
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="/movies">
-            <Button
-              className={pathname === '/movies' ? 'underline' : ''}
-              variant="link"
-            >
-              Movies
-            </Button>
-          </Link>
-          <Link href="/login">
-            <Button>Get Started</Button>
-          </Link>
+          <Suspense fallback={<div>Loading...</div>}>
+            <NavLinks />
+          </Suspense>
         </div>
       </nav>
     </header>

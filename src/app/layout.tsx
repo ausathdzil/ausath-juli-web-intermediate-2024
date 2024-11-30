@@ -1,5 +1,7 @@
+import { UserProvider } from '@/components/auth/user-provider';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
+import { getUser } from '@/lib/db/data';
 import type { Metadata } from 'next';
 import { Inter, Merriweather } from 'next/font/google';
 import './globals.css';
@@ -26,18 +28,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const userPromise = getUser();
+
   return (
     <html lang="en">
       <body
         className={`${inter.variable} ${merriweather.variable} antialiased`}
       >
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="p-8 grow flex flex-col items-center gap-8">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <UserProvider userPromise={userPromise}>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="p-8 grow flex flex-col items-center gap-8">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </UserProvider>
       </body>
     </html>
   );

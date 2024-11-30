@@ -3,6 +3,7 @@ import { discoverMovies } from '@/lib/data';
 import { ArrowRight, Search } from 'lucide-react';
 import Form from 'next/form';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 export default function Home() {
@@ -63,17 +64,22 @@ async function HomeMovies() {
       <ul className="grid grid-cols-3 gap-8">
         <Suspense fallback={<div>Loading...</div>}>
           {movies?.map((movie) => (
-            <li className="max-w-[300px] text-center space-y-2" key={movie.id}>
-              <div className="relative w-[300px] h-[450px]">
-                <Image
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={`${movie.title} poster`}
-                  className="rounded-lg object-cover"
-                  fill
-                />
-              </div>
-              <p className="max-w-full">{movie.title}</p>
+            <li key={movie.id}>
+              <Link
+                className="max-w-[300px] text-center space-y-2"
+                href={`/movies/${movie.id}`}
+              >
+                <div className="relative w-[300px] h-[450px]">
+                  <Image
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={`${movie.title} poster`}
+                    className="rounded-lg object-cover"
+                    fill
+                  />
+                </div>
+                <p>{movie.title}</p>
+              </Link>
             </li>
           ))}
         </Suspense>

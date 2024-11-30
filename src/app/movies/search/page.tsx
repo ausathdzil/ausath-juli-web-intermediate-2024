@@ -48,7 +48,7 @@ export default async function Page({
                       fill
                     />
                   </div>
-                  <p className="max-w-full">{movie.title}</p>
+                  <p className="max-w-[250px]">{movie.title}</p>
                 </Link>
               </li>
             ))}

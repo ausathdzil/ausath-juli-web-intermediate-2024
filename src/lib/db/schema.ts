@@ -30,3 +30,4 @@ export const reviews = pgTable('reviews', {
 });
 
 export type User = typeof users.$inferSelect;
+export type UserPublic = Pick<User, 'id' | 'name' | 'email' | 'createdAt'>;

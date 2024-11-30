@@ -13,6 +13,7 @@ export const getUser = cache(async () => {
       id: users.id,
       name: users.name,
       email: users.email,
+      createdAt: users.createdAt,
     })
     .from(users)
     .where(eq(users.id, session.userId as string));
