@@ -7,7 +7,10 @@ export type SessionPayload = {
 
 export const LoginFormSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
-  password: z.string().trim(),
+  password: z
+    .string()
+    .min(1, { message: 'Please enter your password.' })
+    .trim(),
 });
 
 export type LoginFormState =
@@ -21,10 +24,7 @@ export type LoginFormState =
   | undefined;
 
 export const SignupFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, { message: 'Name must be at least 2 characters long.' })
-    .trim(),
+  name: z.string().min(2, { message: 'Name is required.' }).trim(),
   email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
   password: z
     .string()

@@ -11,7 +11,6 @@ import {
 import { createSession, deleteSession } from '@/lib/session';
 import bcrypt from 'bcrypt';
 import { eq } from 'drizzle-orm';
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function login(state: LoginFormState, formData: FormData) {
@@ -79,7 +78,7 @@ export async function signup(state: SignupFormState, formData: FormData) {
 
   if (existingUser.length > 0) {
     return {
-      message: 'An account with this email already exists.',
+      message: 'An error occurred while creating your account.',
     };
   }
 
