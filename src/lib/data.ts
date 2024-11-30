@@ -1,4 +1,5 @@
 import { Movie, MovieResult, MovieSearchParams } from '@/lib/definitions/movie';
+import 'server-only';
 
 export async function searchMovies(
   searchParams: MovieSearchParams

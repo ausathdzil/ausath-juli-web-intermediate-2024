@@ -17,6 +17,7 @@ export type Movie = {
   tagline: string;
   title: string;
   vote_average: number;
+  success?: boolean;
 };
 
 export type MovieResult = {
