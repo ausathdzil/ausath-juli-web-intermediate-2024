@@ -33,4 +33,6 @@ export type User = typeof users.$inferSelect;
 export type UserPublic = Pick<User, 'id' | 'name' | 'email' | 'createdAt'>;
 
 export type Review = typeof reviews.$inferSelect;
-export type ReviewWithUserName = Review & { userName: string | null };
+export type ReviewWithUserName = Review & {
+  userName: User['name'] | null;
+};

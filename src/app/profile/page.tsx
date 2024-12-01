@@ -89,7 +89,12 @@ async function UserReviews() {
   );
 }
 
-async function ReviewItem({ review }: { review: Review }) {
+type ReviewItemProps = {
+  review: Review;
+}
+
+async function ReviewItem(props: ReviewItemProps) {
+  const review = props.review;
   const movie = await getMovie(review.movieId);
 
   if (!movie) {

@@ -113,8 +113,8 @@ async function MovieReviews(props: MoviePageProps) {
           <p>No reviews yet.</p>
         ) : (
           <ul className="space-y-4">
-            {reviews.map((review, i) => (
-              <li key={i}>
+            {reviews.map((review) => (
+              <li key={review.id}>
                 <ReviewCard review={review} />
               </li>
             ))}
@@ -135,7 +135,13 @@ async function MovieReviews(props: MoviePageProps) {
   );
 }
 
-export function ReviewCard({ review }: { review: ReviewWithUserName }) {
+type ReviewCardProps = {
+  review: ReviewWithUserName;
+};
+
+function ReviewCard(props: ReviewCardProps) {
+  const review = props.review;
+
   return (
     <Card>
       <CardHeader className="flex-row items-center space-y-0 gap-3">
