@@ -10,8 +10,10 @@ import {
 } from '@/components/ui/card';
 import { getMovie } from '@/lib/data';
 import { getMovieReviews } from '@/lib/db/data';
-import { Review, ReviewWithUserName } from '@/lib/db/schema';
+import { ReviewWithUserName } from '@/lib/db/schema';
+import { verifySession } from '@/lib/session';
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -101,24 +103,34 @@ async function MovieDetail(props: MoviePageProps) {
 async function MovieReviews(props: MoviePageProps) {
   const { movieId } = await props.params;
   const reviews = await getMovieReviews(movieId);
+  const session = await verifySession();
 
   return (
-    <section className="flex justify-between gap-8">
+    <section className="flex justify-between">
       <div className="space-y-4 w-1/2">
         <h1>Reviews</h1>
         {reviews.length === 0 ? (
           <p>No reviews yet.</p>
         ) : (
           <ul className="space-y-4">
-            {reviews.map((review) => (
-              <li key={review.id}>
+            {reviews.map((review, i) => (
+              <li key={i}>
                 <ReviewCard review={review} />
               </li>
             ))}
           </ul>
         )}
       </div>
-      <MovieReviewForm movieId={movieId} />
+      {session.isAuth ? (
+        <MovieReviewForm movieId={movieId} />
+      ) : (
+        <p className="text-left">
+          <Link className="text-primary" href="/login">
+            Login
+          </Link>{' '}
+          to review movies.
+        </p>
+      )}
     </section>
   );
 }

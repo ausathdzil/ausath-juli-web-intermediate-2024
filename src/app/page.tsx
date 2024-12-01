@@ -18,16 +18,16 @@ export default function Home() {
             Critic your favorite movies and share your thoughts with the world.
           </p>
         </article>
-        <SearchForm />
-        <HomeMovies />
       </section>
+      <SearchForm />
+      <HomeMovies />
     </>
   );
 }
 
 function SearchForm() {
   return (
-    <Form className="w-3/4 mx-auto" action="/movies/search">
+    <Form className="w-1/2 mx-auto" action="/movies/search">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
@@ -60,7 +60,6 @@ async function HomeMovies() {
 
   return (
     <section className="space-y-8">
-      <h2 className="text-2xl">Popular Movies</h2>
       <ul className="grid grid-cols-3 gap-8">
         <Suspense fallback={<div>Loading...</div>}>
           {movies?.map((movie) => (
