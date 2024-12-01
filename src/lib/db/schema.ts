@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import { integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
   id: text('id')
@@ -20,8 +20,8 @@ export const reviews = pgTable('reviews', {
   userId: text('user_id')
     .notNull()
     .references(() => users.id),
-  movieId: text('movie_id').notNull(),
-  rating: text('rating').notNull(),
+  movieId: integer('movie_id').notNull(),
+  rating: integer('rating').notNull(),
   content: text('content').notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at')
@@ -31,3 +31,6 @@ export const reviews = pgTable('reviews', {
 
 export type User = typeof users.$inferSelect;
 export type UserPublic = Pick<User, 'id' | 'name' | 'email' | 'createdAt'>;
+
+export type Review = typeof reviews.$inferSelect;
+export type ReviewWithUserName = Review & { userName: string | null };

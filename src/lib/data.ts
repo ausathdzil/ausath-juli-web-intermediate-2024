@@ -48,7 +48,7 @@ export async function discoverMovies(): Promise<MovieResult | null> {
   }
 }
 
-export async function getMovie(id: string): Promise<Movie | null> {
+export async function getMovie(id: number): Promise<Movie | null> {
   try {
     const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
       headers: {

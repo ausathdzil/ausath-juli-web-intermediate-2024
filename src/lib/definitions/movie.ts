@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export type Movie = {
   backdrop_path: string;
   genres: {
@@ -31,3 +33,23 @@ export type MovieSearchParams = {
   query: string;
   page?: number;
 };
+
+export const MovieReviewFormSchema = z.object({
+  rating: z
+    .number()
+    .int()
+    .min(1, { message: 'Please select your rating' })
+    .max(10),
+  content: z.string().min(1, { message: 'Please enter your review.' }).trim(),
+  movieId: z.number().int(),
+});
+
+export type MovieReviewFormState =
+  | {
+      errors?: {
+        rating?: string[];
+        content?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
