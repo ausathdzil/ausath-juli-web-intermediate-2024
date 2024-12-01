@@ -3,14 +3,15 @@ import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 import { getUser } from '@/lib/db/data';
 import type { Metadata } from 'next';
-import { Inter, Merriweather } from 'next/font/google';
+import { Merriweather } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
+const satoshi = localFont({
+  src: './fonts/Satoshi-Variable.woff2',
   display: 'swap',
-  variable: '--font-inter',
-});
+  variable: '--font-satoshi',
+})
 const merriweather = Merriweather({
   subsets: ['latin'],
   display: 'swap',
@@ -33,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${merriweather.variable} antialiased`}
+        className={`${satoshi.variable} ${merriweather.variable} antialiased`}
       >
         <UserProvider userPromise={userPromise}>
           <div className="flex flex-col min-h-screen">

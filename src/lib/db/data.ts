@@ -46,3 +46,24 @@ export const getMovieReviews = unstable_cache(
   [`movieReviews`],
   { revalidate: 600, tags: [`movieReviews`] }
 );
+
+export const getUserReviews = unstable_cache(
+  async (userId: string) => {
+    const userReviews = await db
+      .select({
+        id: reviews.id,
+        movieId: reviews.movieId,
+        userId: reviews.userId,
+        rating: reviews.rating,
+        content: reviews.content,
+        createdAt: reviews.createdAt,
+        updatedAt: reviews.updatedAt,
+      })
+      .from(reviews)
+      .where(eq(reviews.userId, userId));
+
+    return userReviews;
+  },
+  [`userReviews`],
+  { revalidate: 600, tags: [`userReviews`] }
+);

@@ -44,7 +44,7 @@ async function MovieDetail(props: MoviePageProps) {
 
   return (
     <section className="flex items-start gap-12 w-full">
-      <div className="relative min-w-[350px] h-[550px]">
+      <div className="relative min-w-[400px] h-[600px]">
         <Image
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src={
@@ -106,7 +106,7 @@ async function MovieReviews(props: MoviePageProps) {
   const session = await verifySession();
 
   return (
-    <section className="flex justify-between">
+    <section className="flex justify-between gap-8">
       <div className="space-y-4 w-1/2">
         <h1>Reviews</h1>
         {reviews.length === 0 ? (
@@ -135,7 +135,7 @@ async function MovieReviews(props: MoviePageProps) {
   );
 }
 
-function ReviewCard({ review }: { review: ReviewWithUserName }) {
+export function ReviewCard({ review }: { review: ReviewWithUserName }) {
   return (
     <Card>
       <CardHeader className="flex-row items-center space-y-0 gap-3">
