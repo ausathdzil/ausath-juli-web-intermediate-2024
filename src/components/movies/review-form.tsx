@@ -3,17 +3,17 @@
 import { useUser } from '@/components/auth/user-provider';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { addMovieReview } from '@/lib/actions/movie';
-import { startTransition, useActionState } from 'react';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../ui/select';
+} from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
+import { addMovieReview } from '@/lib/actions/movie';
 import { Loader2, NotebookPen } from 'lucide-react';
+import { startTransition, useActionState } from 'react';
 
 export default function MovieReviewForm({ movieId }: { movieId: number }) {
   const user = useUser();
@@ -31,7 +31,7 @@ export default function MovieReviewForm({ movieId }: { movieId: number }) {
 
   return (
     <form className="space-y-4 w-1/2" onSubmit={handleSubmit}>
-      <h1>Write your review</h1>
+      <h1 className="text-lg font-bold font-serif">Write your review</h1>
 
       <input type="hidden" name="movieId" value={movieId} />
 

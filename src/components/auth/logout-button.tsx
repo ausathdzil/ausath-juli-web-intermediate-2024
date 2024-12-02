@@ -9,11 +9,11 @@ export function LogoutButton() {
   const [isPending, startTransition] = useTransition();
 
   return (
-    <form action={() => startTransition(() => logout())}>
+    <form className="w-full mt-auto" action={() => startTransition(() => logout())}>
       <Button
         className="hover:text-destructive w-full flex items-center justify-start"
         disabled={isPending}
-        variant="ghost"
+        variant="outline"
         type="submit"
       >
         {isPending ? <Loader2 className="animate-spin" /> : <LogOut />}

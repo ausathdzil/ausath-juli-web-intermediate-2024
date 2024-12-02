@@ -109,10 +109,20 @@ async function MovieReviews(props: MoviePageProps) {
 
   return (
     <section className="flex justify-between gap-8">
+      {session.isAuth ? (
+        <MovieReviewForm movieId={movieId} />
+      ) : (
+        <p className="text-left text-muted-foreground">
+          <Link className="text-primary" href="/login">
+            Login
+          </Link>{' '}
+          to review movies.
+        </p>
+      )}
       <div className="space-y-4 w-1/2">
-        <h1>Reviews</h1>
+        <h1 className="text-lg font-bold font-serif">Reviews</h1>
         {reviews.length === 0 ? (
-          <p>No reviews yet.</p>
+          <p className="text-muted-foreground">No reviews yet.</p>
         ) : (
           <ul className="space-y-4">
             {reviews.map((review) => (
@@ -123,16 +133,6 @@ async function MovieReviews(props: MoviePageProps) {
           </ul>
         )}
       </div>
-      {session.isAuth ? (
-        <MovieReviewForm movieId={movieId} />
-      ) : (
-        <p className="text-left">
-          <Link className="text-primary" href="/login">
-            Login
-          </Link>{' '}
-          to review movies.
-        </p>
-      )}
     </section>
   );
 }

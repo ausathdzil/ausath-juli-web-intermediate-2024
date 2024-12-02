@@ -9,7 +9,7 @@ export default function SidebarNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-col gap-2 w-full">
+    <nav className="flex flex-col gap-2 w-full mt-4">
       <Link href="/profile">
         <Button
           className="w-full flex items-center justify-start"

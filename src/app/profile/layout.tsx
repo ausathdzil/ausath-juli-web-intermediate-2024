@@ -10,14 +10,12 @@ export default function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="flex-1 flex max-w-6xl w-full">
-      <aside className="w-fit py-8 pr-8 flex flex-col items-start border-r">
+      <aside className="w-fit py-8 pr-8 flex flex-col items-start border-r gap-2">
+        <Suspense fallback={<ProfileSkeleton />}>
+          <ProfileCard />
+        </Suspense>
         <SidebarNav />
-        <div className="mt-64 space-y-4 p-4">
-          <Suspense fallback={<ProfileSkeleton />}>
-            <ProfileCard />
-          </Suspense>
-          <LogoutButton />
-        </div>
+        <LogoutButton />
       </aside>
       <section className="flex-1 p-8 space-y-8">{children}</section>
     </div>
@@ -32,7 +30,7 @@ async function ProfileCard() {
   }
 
   return (
-    <div className="border rounded-lg shadow-sm p-3 w-full mx-auto space-y-4">
+    <div className="border rounded-lg shadow-sm p-3 w-full space-y-4">
       <div className="flex items-center justify-center gap-4 ">
         <Avatar>
           <AvatarFallback>{user.name[0]}</AvatarFallback>
