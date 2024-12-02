@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import { Merriweather } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
+import { Suspense } from 'react';
 
 const satoshi = localFont({
   src: './fonts/Satoshi-Variable.woff2',
@@ -24,6 +25,8 @@ export const metadata: Metadata = {
   description: 'A movie review website',
 };
 
+export const experimental_ppr = true;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,15 +39,17 @@ export default function RootLayout({
       <body
         className={`${satoshi.variable} ${merriweather.variable} antialiased`}
       >
-        <UserProvider userPromise={userPromise}>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="p-8 grow flex flex-col items-center gap-8">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </UserProvider>
+        <Suspense fallback={null}>
+          <UserProvider userPromise={userPromise}>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="p-8 grow flex flex-col items-center gap-8">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </UserProvider>
+        </Suspense>
       </body>
     </html>
   );

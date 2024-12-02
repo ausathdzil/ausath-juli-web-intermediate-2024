@@ -1,3 +1,5 @@
+'use cache';
+
 import { Movie, MovieResult, MovieSearchParams } from '@/lib/definitions/movie';
 
 export async function searchMovies(
@@ -21,7 +23,6 @@ export async function searchMovies(
           accept: 'application/json',
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
         },
-        cache: 'force-cache',
       }
     );
     const data = await res.json();
@@ -38,7 +39,6 @@ export async function discoverMovies(): Promise<MovieResult | null> {
         accept: 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
       },
-      cache: 'force-cache',
     });
     const data = await res.json();
     return data;
@@ -54,7 +54,6 @@ export async function getMovie(id: number): Promise<Movie | null> {
         accept: 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
       },
-      cache: 'force-cache',
     });
     const data = await res.json();
     return data;
@@ -70,7 +69,6 @@ export async function getNowPlayingMovies(): Promise<Movie[] | null> {
         accept: 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
       },
-      cache: 'force-cache',
     });
     const data = await res.json();
     return data.results;
@@ -86,7 +84,6 @@ export async function getPopularMovies(): Promise<Movie[] | null> {
         accept: 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
       },
-      cache: 'force-cache',
     });
     const data = await res.json();
     return data.results;
@@ -102,7 +99,6 @@ export async function getTopRatedMovies(): Promise<Movie[] | null> {
         accept: 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
       },
-      cache: 'force-cache',
     });
     const data = await res.json();
     return data.results;
@@ -118,7 +114,6 @@ export async function getUpcomingMovies(): Promise<Movie[] | null> {
         accept: 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
       },
-      cache: 'force-cache',
     });
     const data = await res.json();
     return data.results;
