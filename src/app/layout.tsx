@@ -11,7 +11,7 @@ const satoshi = localFont({
   src: './fonts/Satoshi-Variable.woff2',
   display: 'swap',
   variable: '--font-satoshi',
-})
+});
 const merriweather = Merriweather({
   subsets: ['latin'],
   display: 'swap',

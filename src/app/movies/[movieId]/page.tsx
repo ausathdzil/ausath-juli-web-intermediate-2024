@@ -1,4 +1,6 @@
 import MovieReviewForm from '@/components/movies/review-form';
+import MovieDetailSkeleton from '@/components/skeletons/movie-detail-skeleton';
+import MovieReviewSkeleton from '@/components/skeletons/movie-review-skeleton';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -23,11 +25,11 @@ type MoviePageProps = {
 
 export default function Page(props: MoviePageProps) {
   return (
-    <div className="max-w-[80%] space-y-8">
-      <Suspense fallback={<div>Loading...</div>}>
+    <div className="w-full max-w-[80%] space-y-8">
+      <Suspense fallback={<MovieDetailSkeleton />}>
         <MovieDetail params={props.params} />
       </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<MovieReviewSkeleton />}>
         <MovieReviews params={props.params} />
       </Suspense>
     </div>
