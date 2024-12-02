@@ -25,7 +25,7 @@ type MoviePageProps = {
 
 export default function Page(props: MoviePageProps) {
   return (
-    <div className="w-full max-w-[80%] space-y-8">
+    <div className="w-full max-w-[80%] space-y-8 py-8">
       <Suspense fallback={<MovieDetailSkeleton />}>
         <MovieDetail params={props.params} />
       </Suspense>

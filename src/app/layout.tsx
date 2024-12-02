@@ -43,7 +43,7 @@ export default function RootLayout({
           <UserProvider userPromise={userPromise}>
             <div className="flex flex-col min-h-screen">
               <Header />
-              <main className="p-8 grow flex flex-col items-center gap-8">
+              <main className="flex-1 flex flex-col items-center gap-8">
                 {children}
               </main>
               <Footer />

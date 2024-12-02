@@ -9,7 +9,7 @@ import { Suspense } from 'react';
 export default function Home() {
   return (
     <>
-      <section className="space-y-8 text-center">
+      <section className="space-y-8 text-center pt-8">
         <article className="font-serif space-y-2">
           <h1 className="font-bold text-4xl text-primary">
             Review your favorite movies
@@ -27,7 +27,7 @@ export default function Home() {
 
 function SearchForm() {
   return (
-    <Form className="w-1/2 mx-auto" action="/movies/search">
+    <Form className="w-1/2 mx-auto mb-4" action="/movies/search">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
@@ -59,7 +59,7 @@ async function HomeMovies() {
   const movies = data?.results.slice(0, 6);
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-8 pb-8">
       <ul className="grid grid-cols-3 gap-8">
         <Suspense fallback={<div>Loading...</div>}>
           {movies?.map((movie) => (

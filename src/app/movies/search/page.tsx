@@ -15,12 +15,12 @@ type SearchMoviePageProps = {
 export default function Page(props: SearchMoviePageProps) {
   return (
     <>
-      <section className="w-full text-center">
+      <section className="w-full text-center pt-8">
         <Suspense fallback={<SearchFormSkeleton />}>
           <MovieSearchForm />
         </Suspense>
       </section>
-      <section className="w-full grow flex flex-col items-center justify-between gap-8">
+      <section className="w-full grow flex flex-col items-center justify-between gap-8 pb-8">
         <Suspense fallback={<SearchMovieSkeleton />}>
           <SearchMovieItems searchParams={props.searchParams} />
         </Suspense>

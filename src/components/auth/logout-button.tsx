@@ -10,7 +10,12 @@ export function LogoutButton() {
 
   return (
     <form action={() => startTransition(() => logout())}>
-      <Button variant="destructive" type="submit" disabled={isPending}>
+      <Button
+        className="hover:text-destructive w-full flex items-center justify-start"
+        disabled={isPending}
+        variant="ghost"
+        type="submit"
+      >
         {isPending ? <Loader2 className="animate-spin" /> : <LogOut />}
         <span>Logout</span>
       </Button>
