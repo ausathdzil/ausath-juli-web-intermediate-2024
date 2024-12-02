@@ -1,4 +1,6 @@
 import { LogoutButton } from '@/components/auth/logout-button';
+import ProfileSkeleton from '@/components/skeletons/profile-skeleton';
+import UserReviewSkeleton from '@/components/skeletons/user-review-skeleton';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { getMovie } from '@/lib/data';
@@ -12,7 +14,7 @@ export default function Page() {
     <>
       <section className="w-full max-w-xl flex flex-col items-center gap-4">
         <h1 className="font-bold font-serif text-3xl text-center">Profile</h1>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<ProfileSkeleton />}>
           <ProfileSection />
         </Suspense>
       </section>
@@ -20,7 +22,7 @@ export default function Page() {
         <h1 className="font-bold font-serif text-2xl text-center">
           My Reviews
         </h1>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<UserReviewSkeleton />}>
           <UserReviews />
         </Suspense>
       </section>
@@ -91,7 +93,7 @@ async function UserReviews() {
 
 type ReviewItemProps = {
   review: Review;
-}
+};
 
 async function ReviewItem(props: ReviewItemProps) {
   const review = props.review;
