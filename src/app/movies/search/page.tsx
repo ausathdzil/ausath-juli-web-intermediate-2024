@@ -1,5 +1,7 @@
 import MovieSearchForm from '@/components/movies/search-form';
 import SearchPagination from '@/components/movies/search-pagination';
+import SearchFormSkeleton from '@/components/skeletons/search-form-skeleton';
+import SearchMovieSkeleton from '@/components/skeletons/search-movie-skeleton';
 import { searchMovies } from '@/lib/data';
 import { MovieSearchParams } from '@/lib/definitions/movie';
 import Image from 'next/image';
@@ -14,12 +16,12 @@ export default function Page(props: SearchMoviePageProps) {
   return (
     <>
       <section className="w-full text-center">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SearchFormSkeleton />}>
           <MovieSearchForm />
         </Suspense>
       </section>
       <section className="w-full grow flex flex-col items-center justify-between gap-8">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SearchMovieSkeleton />}>
           <SearchMovieItems searchParams={props.searchParams} />
         </Suspense>
       </section>
@@ -30,13 +32,13 @@ export default function Page(props: SearchMoviePageProps) {
 async function SearchMovieItems(props: SearchMoviePageProps) {
   const { query, page } = await props.searchParams;
   const data = await searchMovies({ query, page });
-  
+
   const movies = data?.results;
   const pages = data?.total_pages;
 
   return (
     <>
-      <ul className="max-w-[80%] flex flex-wrap justify-center gap-8">
+      <ul className="w-full max-w-[80%] flex flex-wrap justify-center gap-8">
         {movies?.map((movie) => (
           <li key={movie.id}>
             <Link

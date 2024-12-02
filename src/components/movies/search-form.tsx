@@ -16,6 +16,9 @@ export default function MovieSearchForm() {
     params.set('page', '1');
     if (term) {
       params.set('query', term);
+    } else {
+      params.delete('query');
+      params.delete('page');
     }
     replace(`${pathname}?${params}`);
   }, 500);
