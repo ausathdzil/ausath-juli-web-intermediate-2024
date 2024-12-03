@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="p-8 flex justify-between border-t bg-primary text-secondary">
+    <footer className="p-8 flex justify-between border-t bg-primary text-secondary w-full">
       <p>&copy; 2024 Critix</p>
       <a
         href="https://github.com/ausathdzil/ausath-juli-web-intermediate-2024"

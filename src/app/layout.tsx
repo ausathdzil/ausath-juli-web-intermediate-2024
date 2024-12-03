@@ -1,12 +1,11 @@
 import { UserProvider } from '@/components/auth/user-provider';
-import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 import { getUser } from '@/lib/db/data';
 import type { Metadata } from 'next';
 import { Merriweather } from 'next/font/google';
 import localFont from 'next/font/local';
-import './globals.css';
 import { Suspense } from 'react';
+import './globals.css';
 
 const satoshi = localFont({
   src: './fonts/Satoshi-Variable.woff2',
@@ -46,7 +45,6 @@ export default function RootLayout({
               <main className="flex-1 flex flex-col items-center gap-8">
                 {children}
               </main>
-              <Footer />
             </div>
           </UserProvider>
         </Suspense>

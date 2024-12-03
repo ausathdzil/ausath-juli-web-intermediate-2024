@@ -1,3 +1,4 @@
+import Footer from '@/components/layout/footer';
 import { Input } from '@/components/ui/input';
 import { discoverMovies } from '@/lib/data';
 import { ArrowRight, Search } from 'lucide-react';
@@ -21,6 +22,7 @@ export default function Home() {
       </section>
       <SearchForm />
       <HomeMovies />
+      <Footer />
     </>
   );
 }
