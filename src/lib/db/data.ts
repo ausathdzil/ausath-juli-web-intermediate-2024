@@ -2,7 +2,10 @@ import { db } from '@/lib/db';
 import { reviews, users } from '@/lib/db/schema';
 import { verifySession } from '@/lib/session';
 import { eq } from 'drizzle-orm';
-import { unstable_cacheTag as cacheTag } from 'next/cache';
+import {
+  unstable_cacheLife as cacheLife,
+  unstable_cacheTag as cacheTag,
+} from 'next/cache';
 import { cache } from 'react';
 
 export const getUser = cache(async () => {
@@ -28,6 +31,7 @@ export async function getMovieReviews(movieId: number) {
   'use cache';
 
   cacheTag('movieReviews');
+  cacheLife('hours');
 
   const movieReviews = await db
     .select({
@@ -51,6 +55,7 @@ export async function getUserReviews(userId: string) {
   'use cache';
 
   cacheTag('userReviews');
+  cacheLife('hours');
 
   const userReviews = await db
     .select({
