@@ -1,9 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="p-8 flex justify-between border-t bg-primary text-secondary w-full">
+    <footer className="px-8 py-6 flex justify-between border-t bg-primary text-secondary w-full">
       <p>&copy; 2024 Critix</p>
       <a
         href="https://github.com/ausathdzil/ausath-juli-web-intermediate-2024"
+        aria-label="GitHub Repository"
         rel="noopener noreferrer"
         target="_blank"
       >
