@@ -45,8 +45,10 @@ export async function getMovieReviews(movieId: number) {
       userName: users.name,
     })
     .from(reviews)
+    .orderBy(desc(reviews.createdAt))
     .leftJoin(users, eq(reviews.userId, users.id))
-    .where(eq(reviews.movieId, movieId));
+    .where(eq(reviews.movieId, movieId))
+    .limit(10);
 
   return movieReviews;
 }

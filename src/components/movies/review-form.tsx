@@ -30,7 +30,7 @@ export default function MovieReviewForm({ movieId }: { movieId: number }) {
   };
 
   return (
-    <form className="space-y-4 w-1/2" onSubmit={handleSubmit}>
+    <form className="space-y-4 lg:w-1/2" onSubmit={handleSubmit}>
       <h1 className="text-lg font-bold font-serif">Write your review</h1>
 
       <input type="hidden" name="movieId" value={movieId} />

@@ -45,8 +45,8 @@ async function MovieDetail(props: MoviePageProps) {
   }
 
   return (
-    <section className="flex items-start gap-12 w-full">
-      <div className="relative min-w-[400px] h-[600px]">
+    <section className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 w-full">
+      <div className="relative w-[250px] h-[375px] lg:min-w-[400px] lg:h-[600px]">
         <Image
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src={
@@ -60,11 +60,11 @@ async function MovieDetail(props: MoviePageProps) {
         />
       </div>
       <article className="flex flex-col gap-4">
-        <h1 className="font-bold font-serif text-4xl text-primary">
+        <h1 className="font-bold font-serif text-xl lg:text-4xl text-primary">
           {movie.title}
         </h1>
         <em className="text-muted-foreground">{movie.tagline}</em>
-        <ul className="space-x-4">
+        <ul className="flex flex-wrap gap-x-4 gap-y-2">
           {movie.genres.map((genre) => (
             <Badge
               key={genre.id}
@@ -108,7 +108,7 @@ async function MovieReviews(props: MoviePageProps) {
   const session = await verifySession();
 
   return (
-    <section className="flex justify-between gap-8">
+    <section className="flex flex-col sm:flex-row justify-start lg:justify-between gap-8">
       {session.isAuth ? (
         <MovieReviewForm movieId={movieId} />
       ) : (
@@ -119,7 +119,7 @@ async function MovieReviews(props: MoviePageProps) {
           to review movies.
         </p>
       )}
-      <div className="space-y-4 w-1/2">
+      <div className="space-y-4 lg:w-1/2">
         <h1 className="text-lg font-bold font-serif">Reviews</h1>
         {reviews.length === 0 ? (
           <p className="text-muted-foreground">No reviews yet.</p>
@@ -152,7 +152,7 @@ function ReviewCard(props: ReviewCardProps) {
         </Avatar>
         <div>
           <CardTitle className="text-sm">{review.userName}</CardTitle>
-          <CardDescription className="text-muted-foreground space-x-2">
+          <CardDescription className="text-muted-foreground space-x-1 lg:space-x-2 text-xs lg:text-sm">
             <span>
               {new Date(review.createdAt).toLocaleDateString('en-ID', {
                 year: 'numeric',

@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 // Skeleton Loader component
 const SkeletonLoader = () => (
-  <div className="space-y-4 w-full pb-8">
+  <div className="space-y-4 w-full pb-8 px-8">
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-screen-xl mx-auto">
       {Array.from({ length: 4 }).map((_, index) => (
         <div
@@ -34,7 +34,7 @@ const SkeletonLoader = () => (
 export default function Page() {
   return (
     <>
-      <section className="space-y-4 w-full py-8">
+      <section className="space-y-4 w-full py-8 px-8">
         <h1 className="text-3xl text-center font-semibold mb-10">
           Now Playing
         </h1>
@@ -42,7 +42,7 @@ export default function Page() {
           <NowPlayingSection />
         </Suspense>
       </section>
-      <section className="space-y-4 w-full py-8">
+      <section className="space-y-4 w-full py-8 px-8">
         <h1 className="text-3xl text-center font-semibold mb-10">
           Popular Movies
         </h1>
@@ -50,13 +50,13 @@ export default function Page() {
           <PopularSection />
         </Suspense>
       </section>
-      <section className="space-y-4 w-full py-8">
+      <section className="space-y-4 w-full py-8 px-8">
         <h1 className="text-3xl text-center font-semibold mb-10">Top Rated</h1>
         <Suspense fallback={<SkeletonLoader />}>
           <TopRatedSection />
         </Suspense>
       </section>
-      <section className="space-y-4 w-full py-8">
+      <section className="space-y-4 w-full py-8 px-8">
         <h1 className="text-3xl text-center font-semibold mb-10">Upcoming</h1>
         <Suspense fallback={<SkeletonLoader />}>
           <UpcomingSection />

@@ -57,7 +57,7 @@ async function ReviewItem(props: ReviewItemProps) {
   return (
     <Link href={`/movies/${review.movieId}`}>
       <div className="border rounded-lg shadow-sm p-4 mx-auto space-y-1 w-fit xl:w-[800px] h-full hover:border-primary transition-colors">
-        <p className="font-bold text-lg">{movie.title}</p>
+        <p className="font-bold font-serif text-lg">{movie.title}</p>
         <div className="space-x-2 text-sm text-muted-foreground">
           <span>
             {new Date(review.createdAt).toLocaleDateString('en-ID', {
