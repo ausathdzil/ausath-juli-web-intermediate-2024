@@ -55,22 +55,22 @@ async function ReviewItem(props: ReviewItemProps) {
   }
 
   return (
-    <div className="border rounded-lg shadow-sm p-4 mx-auto space-y-1 w-[800px] h-full">
-      <Link href={`/movies/${review.movieId}`} className="font-bold text-lg">
-        {movie.title}
-      </Link>
-      <div className="space-x-2 text-sm text-muted-foreground">
-        <span>
-          {new Date(review.createdAt).toLocaleDateString('en-ID', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </span>
-        <span>&bull;</span>
-        <span>⭐ {review.rating}</span>
+    <Link href={`/movies/${review.movieId}`}>
+      <div className="border rounded-lg shadow-sm p-4 mx-auto space-y-1 w-fit xl:w-[800px] h-full hover:border-primary transition-colors">
+        <p className="font-bold text-lg">{movie.title}</p>
+        <div className="space-x-2 text-sm text-muted-foreground">
+          <span>
+            {new Date(review.createdAt).toLocaleDateString('en-ID', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </span>
+          <span>&bull;</span>
+          <span>⭐ {review.rating}</span>
+        </div>
+        <p className="text-sm xl:text-base">{review.content}</p>
       </div>
-      <p>{review.content}</p>
-    </div>
+    </Link>
   );
 }

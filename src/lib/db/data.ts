@@ -1,7 +1,7 @@
 import { db } from '@/lib/db';
 import { reviews, users } from '@/lib/db/schema';
 import { verifySession } from '@/lib/session';
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import {
   unstable_cacheLife as cacheLife,
   unstable_cacheTag as cacheTag,
@@ -68,7 +68,9 @@ export async function getUserReviews(userId: string) {
       updatedAt: reviews.updatedAt,
     })
     .from(reviews)
-    .where(eq(reviews.userId, userId));
+    .orderBy(desc(reviews.createdAt))
+    .where(eq(reviews.userId, userId))
+    .limit(4);
 
   return userReviews;
 }

@@ -10,14 +10,20 @@ import Link from 'next/link';
 
 // Skeleton Loader component
 const SkeletonLoader = () => (
-  <div className="space-y-4 w-full py-8">
+  <div className="space-y-4 w-full pb-8">
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-screen-xl mx-auto">
       {Array.from({ length: 4 }).map((_, index) => (
-        <div key={index} className="bg-gray-200 animate-pulse rounded-lg shadow overflow-hidden">
-          <div className="relative w-full h-[400px] bg-gray-300"></div> {/* Image skeleton */}
+        <div
+          key={index}
+          className="bg-gray-200 animate-pulse rounded-lg shadow overflow-hidden"
+        >
+          <div className="relative w-full h-[400px] bg-gray-300"></div>{' '}
+          {/* Image skeleton */}
           <div className="p-4">
-            <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div> {/* Title text skeleton */}
-            <div className="h-3 bg-gray-300 rounded w-1/2"></div> {/* Date text skeleton */}
+            <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>{' '}
+            {/* Title text skeleton */}
+            <div className="h-3 bg-gray-300 rounded w-1/2"></div>{' '}
+            {/* Date text skeleton */}
           </div>
         </div>
       ))}
@@ -29,31 +35,31 @@ export default function Page() {
   return (
     <>
       <section className="space-y-4 w-full py-8">
-        <h1 className="text-3xl text-center font-semibold mb-10">Now Playing</h1>
+        <h1 className="text-3xl text-center font-semibold mb-10">
+          Now Playing
+        </h1>
         <Suspense fallback={<SkeletonLoader />}>
-        <SkeletonLoader />
-          {/* <NowPlayingSection /> */}
+          <NowPlayingSection />
         </Suspense>
       </section>
       <section className="space-y-4 w-full py-8">
-        <h1 className="text-3xl text-center font-semibold mb-10">Popular Movies</h1>
+        <h1 className="text-3xl text-center font-semibold mb-10">
+          Popular Movies
+        </h1>
         <Suspense fallback={<SkeletonLoader />}>
-        <SkeletonLoader />
-          {/* <PopularSection /> */}
+          <PopularSection />
         </Suspense>
       </section>
       <section className="space-y-4 w-full py-8">
         <h1 className="text-3xl text-center font-semibold mb-10">Top Rated</h1>
         <Suspense fallback={<SkeletonLoader />}>
-        <SkeletonLoader />
-          {/* <TopRatedSection /> */}
+          <TopRatedSection />
         </Suspense>
       </section>
       <section className="space-y-4 w-full py-8">
         <h1 className="text-3xl text-center font-semibold mb-10">Upcoming</h1>
         <Suspense fallback={<SkeletonLoader />}>
-        <SkeletonLoader />
-          {/* <UpcomingSection /> */}
+          <UpcomingSection />
         </Suspense>
       </section>
     </>

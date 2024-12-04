@@ -11,11 +11,11 @@ export default function Home() {
   return (
     <>
       <section className="space-y-8 text-center pt-8">
-        <article className="font-serif space-y-2">
-          <h1 className="font-bold text-4xl text-primary">
+        <article className="font-serif space-y-2 px-8">
+          <h1 className="font-bold text-2xl sm:text-4xl text-primary">
             Review your favorite movies
           </h1>
-          <p className="text-lg">
+          <p className="text-xs sm:text-lg">
             Critic your favorite movies and share your thoughts with the world.
           </p>
         </article>
@@ -29,7 +29,7 @@ export default function Home() {
 
 function SearchForm() {
   return (
-    <Form className="w-1/2 mx-auto mb-4" action="/movies/search">
+    <Form className="sm:w-1/2 mx-auto mb-4" action="/movies/search">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
@@ -61,8 +61,8 @@ async function HomeMovies() {
   const movies = data?.results.slice(0, 6);
 
   return (
-    <section className="space-y-8 pb-8">
-      <ul className="grid grid-cols-3 gap-8">
+    <section className="space-y-8 pb-8 px-0">
+      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <Suspense fallback={<div>Loading...</div>}>
           {movies?.map((movie) => (
             <li key={movie.id}>
@@ -75,7 +75,7 @@ async function HomeMovies() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={`${movie.title} poster`}
-                    className="rounded-lg object-cover"
+                    className="rounded-lg object-cover border-2 hover:shadow hover:border-primary transition-all hover:shadow-primary"
                     fill
                   />
                 </div>
@@ -88,3 +88,4 @@ async function HomeMovies() {
     </section>
   );
 }
+

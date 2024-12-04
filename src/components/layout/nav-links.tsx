@@ -11,7 +11,7 @@ export default function NavLinks() {
 
   return (
     <>
-      <Link href="/movies">
+      <Link className="hidden sm:block" href="/movies">
         <Button
           className={pathname === '/movies' ? 'underline' : ''}
           variant="link"
@@ -21,7 +21,7 @@ export default function NavLinks() {
       </Link>
       {user ? (
         <div className="flex items-center gap-8">
-          <p className="text-sm">👋 Hey, {user.name}!</p>
+          <p className="text-sm hidden sm:block">👋 Hey, {user.name}!</p>
           <Link href="/profile">
             <Button>Profile</Button>
           </Link>
