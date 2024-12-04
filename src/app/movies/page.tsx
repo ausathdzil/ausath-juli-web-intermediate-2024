@@ -11,8 +11,7 @@ import Link from 'next/link';
 // Skeleton Loader component
 const SkeletonLoader = () => (
   <div className="space-y-4 w-full py-8">
-    <div className="h-8 bg-gray-300 rounded w-1/3 mx-auto mb-6"></div> {/* Title skeleton */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full max-w-screen-xl">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-screen-xl mx-auto">
       {Array.from({ length: 4 }).map((_, index) => (
         <div key={index} className="bg-gray-200 animate-pulse rounded-lg shadow overflow-hidden">
           <div className="relative w-full h-[400px] bg-gray-300"></div> {/* Image skeleton */}
@@ -32,25 +31,29 @@ export default function Page() {
       <section className="space-y-4 w-full py-8">
         <h1 className="text-3xl text-center font-semibold mb-10">Now Playing</h1>
         <Suspense fallback={<SkeletonLoader />}>
-          <NowPlayingSection />
+        <SkeletonLoader />
+          {/* <NowPlayingSection /> */}
         </Suspense>
       </section>
       <section className="space-y-4 w-full py-8">
         <h1 className="text-3xl text-center font-semibold mb-10">Popular Movies</h1>
         <Suspense fallback={<SkeletonLoader />}>
-          <PopularSection />
+        <SkeletonLoader />
+          {/* <PopularSection /> */}
         </Suspense>
       </section>
       <section className="space-y-4 w-full py-8">
         <h1 className="text-3xl text-center font-semibold mb-10">Top Rated</h1>
         <Suspense fallback={<SkeletonLoader />}>
-          <TopRatedSection />
+        <SkeletonLoader />
+          {/* <TopRatedSection /> */}
         </Suspense>
       </section>
       <section className="space-y-4 w-full py-8">
         <h1 className="text-3xl text-center font-semibold mb-10">Upcoming</h1>
         <Suspense fallback={<SkeletonLoader />}>
-          <UpcomingSection />
+        <SkeletonLoader />
+          {/* <UpcomingSection /> */}
         </Suspense>
       </section>
     </>
