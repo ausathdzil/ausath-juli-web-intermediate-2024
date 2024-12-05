@@ -14,7 +14,7 @@ import {
 } from '@/lib/definitions/auth';
 import { createSession, deleteSession } from '@/lib/session';
 import bcrypt from 'bcrypt';
-import { eq } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -40,7 +40,7 @@ export async function login(state: LoginFormState, formData: FormData) {
 
   if (user.length === 0) {
     return {
-      message: 'Invalid email or password.',
+      message: 'Invalid credentials.',
     };
   }
 
@@ -50,7 +50,7 @@ export async function login(state: LoginFormState, formData: FormData) {
 
   if (!isPasswordValid) {
     return {
-      message: 'Invalid email or password.',
+      message: 'Invalid credentials.',
     };
   }
 
@@ -75,18 +75,6 @@ export async function signup(state: SignupFormState, formData: FormData) {
   const { name, email, password } = validatedFields.data;
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const existingUser = await db
-    .select({ email: users.email })
-    .from(users)
-    .where(eq(users.email, email))
-    .limit(1);
-
-  if (existingUser.length > 0) {
-    return {
-      message: 'An error occurred while creating your account.',
-    };
-  }
-
   const data = await db
     .insert(users)
     .values({
@@ -94,13 +82,14 @@ export async function signup(state: SignupFormState, formData: FormData) {
       email: email,
       password: hashedPassword,
     })
+    .onConflictDoNothing({ target: [users.email] })
     .returning({ id: users.id });
 
   const user = data[0];
 
   if (!user) {
     return {
-      message: 'An error occurred while creating your account.',
+      message: 'Email is already in use.',
     };
   }
 
@@ -133,21 +122,23 @@ export async function updateProfile(
   const { name, email } = validatedFields.data;
 
   const user = await db
-    .select({ id: users.id })
-    .from(users)
-    .where(eq(users.email, email))
-    .limit(1);
-
-  if (user.length > 0 && user[0].id !== userId) {
-    return {
-      message: 'Email is already in use.',
-    };
-  }
-
-  await db
     .update(users)
     .set({ name: name, email: email })
-    .where(eq(users.id, userId));
+    .where(
+      and(
+        eq(users.id, userId),
+        sql`NOT EXISTS (SELECT 1 FROM ${users} WHERE ${users.email} = ${email} AND ${users.id} != ${userId})`
+      )
+    )
+    .returning({ id: users.id });
+
+  if (user.length === 0) {
+    return {
+      errors: {
+        email: ['Email is already in use.'],
+      },
+    };
+  }
 
   revalidatePath('/profile');
 

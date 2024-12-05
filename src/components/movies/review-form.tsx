@@ -66,14 +66,14 @@ export default function MovieReviewForm({ movieId }: { movieId: number }) {
         )}
       </div>
 
+      {state?.message && <p className="text-primary">{state.message}</p>}
+
       <div className="flex justify-end">
         <Button type="submit" disabled={pending}>
           {pending ? <Loader2 className="animate-spin" /> : <NotebookPen />}
           <span>Submit</span>
         </Button>
       </div>
-
-      {state?.message && <p className="text-primary">{state.message}</p>}
     </form>
   );
 }

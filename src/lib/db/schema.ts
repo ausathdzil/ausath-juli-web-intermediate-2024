@@ -1,4 +1,4 @@
-import { integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import { integer, pgTable, text, timestamp, unique } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
   id: text('id')
@@ -27,7 +27,9 @@ export const reviews = pgTable('reviews', {
   updatedAt: timestamp('updated_at')
     .notNull()
     .$onUpdate(() => new Date()),
-});
+}, (t) => ({
+  unq: unique().on(t.userId, t.movieId),
+}));
 
 export type User = typeof users.$inferSelect;
 export type UserPublic = Pick<User, 'id' | 'name' | 'email' | 'createdAt'>;

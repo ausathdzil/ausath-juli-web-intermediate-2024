@@ -6,7 +6,6 @@ import {
   MovieReviewFormSchema,
   MovieReviewFormState,
 } from '@/lib/definitions/movie';
-import { and, eq } from 'drizzle-orm';
 import { revalidateTag } from 'next/cache';
 
 export async function addMovieReview(
@@ -34,20 +33,6 @@ export async function addMovieReview(
 
   const { movieId, rating, content } = validatedFields.data;
 
-  const existingReview = await db
-    .select({
-      id: reviews.id,
-    })
-    .from(reviews)
-    .where(and(eq(reviews.userId, userId), eq(reviews.movieId, movieId)))
-    .limit(1);
-
-  if (existingReview.length > 0) {
-    return {
-      message: 'You have already reviewed this movie.',
-    };
-  }
-
   const data = await db
     .insert(reviews)
     .values({
@@ -56,13 +41,12 @@ export async function addMovieReview(
       rating,
       content,
     })
-    .returning({
-      id: reviews.id,
-    });
+    .onConflictDoNothing({ target: [reviews.userId, reviews.movieId] })
+    .returning({ id: reviews.id });
 
-  if (!data) {
+  if (data.length === 0) {
     return {
-      message: 'An error occurred while adding your review.',
+      message: 'You have already reviewed this movie.',
     };
   }
 
