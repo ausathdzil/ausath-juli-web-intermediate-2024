@@ -25,7 +25,7 @@ export default function MovieSearchForm() {
 
   return (
     <div className="w-3/5 mx-auto text-center space-y-4">
-      <Label className="text-xl font-semibold" htmlFor="search">
+      <Label className="text-xl font-semibold" htmlFor="query">
         Search{' '}
         {searchParams.get('query')
           ? `results for "${searchParams.get('query')}"`

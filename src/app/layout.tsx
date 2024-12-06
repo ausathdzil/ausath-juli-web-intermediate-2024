@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${satoshi.variable} ${merriweather.variable} antialiased`}
+        className={`${satoshi.variable} ${merriweather.variable} antialiased tracking-tight`}
       >
         <Suspense fallback={null}>
           <UserProvider userPromise={userPromise}>
@@ -52,3 +52,4 @@ export default function RootLayout({
     </html>
   );
 }
+
