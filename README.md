@@ -15,8 +15,12 @@ Final Project Study Club Web Intermediate KSM Android.
 
 - Search movies menggunakan Next.js Form
 - State management menggunakan URL untuk pagination
-- Halaman profil untuk melakukan operasi CRUD pada reviews dengan React 19 Server Functions
 - Authentication dengan email dan password menggunakan JWT
+- Operasi CRUD pada reviews menggunakan React 19 Server Functions
+- Progressive enhancement menggunakan React 19 useActionState pada form
+- Validasi form pada sisi server menggunakan Zod dan React 19 Server Functions
+- Akses data user dimana saja dengan UserProvider menggunakan React createContext
+- Global middleware untuk melindungi halaman profil
 
 ## Run Locally
 
