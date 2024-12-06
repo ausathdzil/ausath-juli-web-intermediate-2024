@@ -10,7 +10,7 @@ export default function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="flex-1 flex flex-col xl:flex-row max-w-6xl w-full">
-      <aside className="w-fit py-8 xl:pr-8 flex flex-col items-start border-b lg:border-r gap-2 mx-auto">
+      <aside className="w-full xl:w-fit px-8 xl:px-0 py-8 xl:pr-8 flex flex-col items-start border-b lg:border-r gap-2 mx-auto">
         <Suspense fallback={<ProfileSkeleton />}>
           <ProfileCard />
         </Suspense>

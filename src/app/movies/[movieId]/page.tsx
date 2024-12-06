@@ -45,7 +45,7 @@ async function MovieDetail(props: MoviePageProps) {
   }
 
   return (
-    <section className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 w-full">
+    <section className="flex flex-col lg:flex-row items-center xl:items-start gap-8 lg:gap-12 w-full">
       <div className="relative w-[250px] h-[375px] lg:min-w-[400px] lg:h-[600px]">
         <Image
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
