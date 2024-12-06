@@ -1,6 +1,6 @@
 # Critix
 
-Final Project Study Club Web Intermediate KSM Android
+Final Project Study Club Web Intermediate KSM Android.
 
 ## Authors
 
@@ -11,51 +11,49 @@ Final Project Study Club Web Intermediate KSM Android
 
 [critix.vercel.app](https://critix.vercel.app)
 
-## Environment Variables
-
-Untuk menjalankan proyek ini, tambahkan enviroment variables berikut ini ke dalam file .env.local
-
-`DATABASE_URL`
-
-`SESSION_SECRET`
-
-`NEXT_PUBLIC_TMDB_API_KEY`
-
 ## Features
 
-- Search movies
-- Create reviews
-- Authentication
+- Search movies menggunakan Next.js Form
+- State management menggunakan URL untuk pagination
+- Halaman profil untuk melakukan operasi CRUD pada reviews dengan React 19 Server Functions
+- Authentication dengan email dan password menggunakan JWT
 
 ## Run Locally
 
-Clone proyek ini
+Clone proyek:
 
 ```bash
   git clone https://github.com/ausathdzil/ausath-juli-web-intermediate-2024.git
 ```
 
-Pergi ke direktori proyek
+Pergi ke direktori proyek:
 
 ```bash
   cd ausath-juli-web-intermediate-2024
 ```
 
-Masukkan enviroment variables
+Buat file .env.local dan tambahkan enviroment variables berikut:
 
-`DATABASE_URL` = Gunakan database Neon dan masukan URLnya
+1. `DATABASE_URL`: URL database Neon.
 
-`SESSION_SECRET` = JWT 256 bit secret, gunakan perintah `openssl rand -base64 32` untuk generasi string acak
+2. `SESSION_SECRET`: String acak menggunakan perintah `openssl rand -base64 32` untuk JWT 256 bit secret.
 
-`NEXT_PUBLIC_TMDB_API_KEY` = API KEY yang digunakan sebagai header Authorization untuk mengonsumsi API dari TMDB
+3. `NEXT_PUBLIC_TMDB_API_KEY`: API KEY yang digunakan sebagai header Authorization untuk mengonsumsi API dari TMDB.
 
-Install dependencies
+Install dependencies:
 
 ```bash
   pnpm install
 ```
 
-Nyalakan server
+Migrasi database:
+
+```bash
+  npx drizzle-kit create
+  npx drizzle-kit migrate
+```
+
+Nyalakan server development:
 
 ```bash
   pnpm run dev

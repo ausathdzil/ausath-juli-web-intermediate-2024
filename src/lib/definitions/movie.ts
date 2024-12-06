@@ -34,7 +34,7 @@ export type MovieSearchParams = {
   page?: number;
 };
 
-export const MovieReviewFormSchema = z.object({
+export const CreateMovieReviewFormSchema = z.object({
   rating: z
     .number()
     .int()
@@ -44,7 +44,27 @@ export const MovieReviewFormSchema = z.object({
   movieId: z.number().int(),
 });
 
-export type MovieReviewFormState =
+export type CreateMovieReviewFormState =
+  | {
+      errors?: {
+        rating?: string[];
+        content?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
+
+export const UpdateMovieReviewFormSchema = z.object({
+  reviewId: z.string(),
+  rating: z
+    .number()
+    .int()
+    .min(1, { message: 'Please select your rating' })
+    .max(10),
+  content: z.string().min(1, { message: 'Please enter your review.' }).trim(),
+});
+
+export type UpdateMovieReviewFormState =
   | {
       errors?: {
         rating?: string[];

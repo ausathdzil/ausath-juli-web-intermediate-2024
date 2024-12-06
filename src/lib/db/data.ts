@@ -76,3 +76,18 @@ export async function getUserReviews(userId: string) {
 
   return userReviews;
 }
+
+export async function getReviewById(reviewId: string) {
+  'use cache';
+
+  cacheTag(`review-${reviewId}`);
+  cacheLife('hours');
+
+  const review = await db
+    .select()
+    .from(reviews)
+    .where(eq(reviews.id, reviewId))
+    .limit(1);
+
+  return review[0];
+}

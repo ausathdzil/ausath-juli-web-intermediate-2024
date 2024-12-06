@@ -11,18 +11,29 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { addMovieReview } from '@/lib/actions/movie';
-import { Loader2, NotebookPen } from 'lucide-react';
+import { updateMovieReview } from '@/lib/actions/movie';
+import { ArrowLeft, Loader2, NotebookPen } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { startTransition, useActionState } from 'react';
 
-export default function MovieReviewForm({ movieId }: { movieId: number }) {
+export default function EditReviewForm({
+  reviewId,
+  rating,
+  content,
+}: {
+  reviewId: string;
+  rating: number;
+  content: string;
+}) {
   const user = useUser();
-  const addMovieReviewWithId = addMovieReview.bind(null, user.id);
+  const updateMovieReviewWithId = updateMovieReview.bind(null, user.id);
 
   const [state, action, pending] = useActionState(
-    addMovieReviewWithId,
+    updateMovieReviewWithId,
     undefined
   );
+
+  const { back } = useRouter();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,14 +41,12 @@ export default function MovieReviewForm({ movieId }: { movieId: number }) {
   };
 
   return (
-    <form className="space-y-4 lg:w-1/2" onSubmit={handleSubmit}>
-      <h1 className="text-lg font-bold font-serif">Write your review</h1>
-
-      <input type="hidden" name="movieId" value={movieId} />
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <input type="hidden" name="reviewId" value={reviewId} />
 
       <div className="space-y-1">
         <Label htmlFor="rating">Rating</Label>
-        <Select name="rating">
+        <Select defaultValue={rating.toString()} name="rating">
           <SelectTrigger>
             <SelectValue placeholder="Select a rating" />
           </SelectTrigger>
@@ -58,6 +67,7 @@ export default function MovieReviewForm({ movieId }: { movieId: number }) {
         <Label htmlFor="content">Review</Label>
         <Textarea
           placeholder="What did you think of the movie?"
+          defaultValue={content}
           name="content"
           id="content"
         />
@@ -68,7 +78,11 @@ export default function MovieReviewForm({ movieId }: { movieId: number }) {
 
       {state?.message && <p className="text-primary">{state.message}</p>}
 
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-4">
+        <Button onClick={() => back()} variant="outline">
+          <ArrowLeft />
+          <span>Cancel</span>
+        </Button>
         <Button type="submit" disabled={pending}>
           {pending ? <Loader2 className="animate-spin" /> : <NotebookPen />}
           <span>Submit</span>

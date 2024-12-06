@@ -1,4 +1,4 @@
-import MovieReviewForm from '@/components/movies/review-form';
+import AddReviewForm from '@/components/movies/add-review-form';
 import MovieDetailSkeleton from '@/components/skeletons/movie-detail-skeleton';
 import MovieReviewSkeleton from '@/components/skeletons/movie-review-skeleton';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -110,7 +110,7 @@ async function MovieReviews(props: MoviePageProps) {
   return (
     <section className="flex flex-col sm:flex-row justify-start lg:justify-between gap-8">
       {session.isAuth ? (
-        <MovieReviewForm movieId={movieId} />
+        <AddReviewForm movieId={movieId} />
       ) : (
         <p className="text-left text-muted-foreground">
           <Link className="text-primary" href="/login">

@@ -1,3 +1,4 @@
+import ReviewActions from '@/components/movies/review-actions';
 import UserReviewSkeleton from '@/components/skeletons/user-review-skeleton';
 import { getMovie } from '@/lib/data';
 import { getUser, getUserReviews } from '@/lib/db/data';
@@ -55,22 +56,27 @@ async function ReviewItem(props: ReviewItemProps) {
   }
 
   return (
-    <Link href={`/movies/${review.movieId}`}>
-      <div className="border rounded-lg shadow-sm p-4 mx-auto space-y-1 w-full h-full hover:border-primary transition-colors">
-        <p className="font-bold font-serif text-lg">{movie.title}</p>
-        <div className="space-x-2 text-sm text-muted-foreground">
-          <span>
-            {new Date(review.createdAt).toLocaleDateString('en-ID', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </span>
-          <span>&bull;</span>
-          <span>⭐ {review.rating}</span>
-        </div>
-        <p className="text-sm xl:text-base">{review.content}</p>
+    <div className="border rounded-lg shadow-sm p-4 mx-auto space-y-1 w-full h-full hover:border-primary transition-colors">
+      <div className="w-full flex items-center justify-between">
+        <Link href={`/movies/${review.movieId}`}>
+          <p className="font-bold font-serif text-lg hover:text-primary">
+            {movie.title}
+          </p>
+        </Link>
+        <ReviewActions reviewId={review.id} userId={review.userId} />
       </div>
-    </Link>
+      <div className="space-x-2 text-sm text-muted-foreground">
+        <span>
+          {new Date(review.createdAt).toLocaleDateString('en-ID', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </span>
+        <span>&bull;</span>
+        <span>⭐ {review.rating}</span>
+      </div>
+      <p className="text-sm xl:text-base">{review.content}</p>
+    </div>
   );
 }

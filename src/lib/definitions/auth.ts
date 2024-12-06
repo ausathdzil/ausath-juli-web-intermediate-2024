@@ -24,7 +24,11 @@ export type LoginFormState =
   | undefined;
 
 export const SignupFormSchema = z.object({
-  name: z.string().min(2, { message: 'Name is required.' }).trim(),
+  name: z
+    .string()
+    .min(2, { message: 'Name is required.' })
+    .max(50, { message: 'Name should be less than 50 characters.' })
+    .trim(),
   email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
   password: z
     .string()
@@ -47,7 +51,11 @@ export type SignupFormState =
   | undefined;
 
 export const UpdateProfileFormSchema = z.object({
-  name: z.string().min(2, { message: 'Name is required.' }).trim(),
+  name: z
+    .string()
+    .min(2, { message: 'Name is required.' })
+    .max(50, { message: 'Name should be less than 50 characters.' })
+    .trim(),
   email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
 });
 
