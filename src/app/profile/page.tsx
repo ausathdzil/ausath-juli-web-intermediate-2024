@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: 'My Profile',
+  title: 'Profile',
   description: 'Your profile page',
 };
 

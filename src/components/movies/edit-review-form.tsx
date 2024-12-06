@@ -52,7 +52,11 @@ export default function EditReviewForm({
           </SelectTrigger>
           <SelectContent>
             {Array.from({ length: 10 }, (_, i) => (
-              <SelectItem key={i} value={(i + 1).toString()}>
+              <SelectItem
+                value={(i + 1).toString()}
+                className="tabular-nums"
+                key={i}
+              >
                 ⭐ {i + 1}
               </SelectItem>
             ))}

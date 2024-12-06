@@ -174,7 +174,7 @@ async function TopRatedSection() {
             </div>
             <div className="p-4">
               <p className="text-lg font-medium text-gray-800">{movie.title}</p>
-              <p className="text-sm text-gray-600">⭐ {movie.vote_average}</p>
+              <p className="text-sm text-gray-600">⭐ {movie.vote_average.toFixed(1)}</p>
             </div>
           </Link>
         ))}

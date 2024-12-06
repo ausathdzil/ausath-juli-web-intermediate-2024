@@ -17,9 +17,11 @@ export default function UpdatePasswordForm() {
     undefined
   );
 
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isCurrentVisible, setIsCurrentVisible] = useState(false);
+  const [isNewVisible, setIsNewVisible] = useState(false);
 
-  const toggleVisibility = () => setIsVisible((prevState) => !prevState);
+  const toggleCurrentVisibility = () => setIsCurrentVisible(!isCurrentVisible);
+  const toggleNewVisibility = () => setIsNewVisible(!isNewVisible);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,17 +38,17 @@ export default function UpdatePasswordForm() {
             name="currentPassword"
             className="pe-9"
             placeholder="Enter your password"
-            type={isVisible ? 'text' : 'password'}
+            type={isCurrentVisible ? 'text' : 'password'}
           />
           <button
             className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground/80 outline-offset-2 transition-colors hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
             type="button"
-            onClick={toggleVisibility}
-            aria-label={isVisible ? 'Hide password' : 'Show password'}
-            aria-pressed={isVisible}
+            onClick={toggleCurrentVisibility}
+            aria-label={isCurrentVisible ? 'Hide password' : 'Show password'}
+            aria-pressed={isCurrentVisible}
             aria-controls="currentPassword"
           >
-            {isVisible ? (
+            {isCurrentVisible ? (
               <EyeOff size={16} strokeWidth={2} aria-hidden="true" />
             ) : (
               <Eye size={16} strokeWidth={2} aria-hidden="true" />
@@ -68,17 +70,17 @@ export default function UpdatePasswordForm() {
             name="newPassword"
             className="pe-9"
             placeholder="Enter your password"
-            type={isVisible ? 'text' : 'password'}
+            type={isNewVisible ? 'text' : 'password'}
           />
           <button
             className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground/80 outline-offset-2 transition-colors hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
             type="button"
-            onClick={toggleVisibility}
-            aria-label={isVisible ? 'Hide password' : 'Show password'}
-            aria-pressed={isVisible}
+            onClick={toggleNewVisibility}
+            aria-label={isNewVisible ? 'Hide password' : 'Show password'}
+            aria-pressed={isNewVisible}
             aria-controls="newPassword"
           >
-            {isVisible ? (
+            {isNewVisible ? (
               <EyeOff size={16} strokeWidth={2} aria-hidden="true" />
             ) : (
               <Eye size={16} strokeWidth={2} aria-hidden="true" />
