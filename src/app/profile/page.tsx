@@ -3,8 +3,14 @@ import UserReviewSkeleton from '@/components/skeletons/user-review-skeleton';
 import { getMovie } from '@/lib/data';
 import { getUser, getUserReviews } from '@/lib/db/data';
 import { Review } from '@/lib/db/schema';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+  title: 'My Profile',
+  description: 'Your profile page',
+};
 
 export default function Page() {
   return (

@@ -4,6 +4,7 @@ import SearchFormSkeleton from '@/components/skeletons/search-form-skeleton';
 import SearchMovieSkeleton from '@/components/skeletons/search-movie-skeleton';
 import { searchMovies } from '@/lib/data';
 import { MovieSearchParams } from '@/lib/definitions/movie';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -11,6 +12,17 @@ import { Suspense } from 'react';
 type SearchMoviePageProps = {
   searchParams: Promise<MovieSearchParams>;
 };
+
+export async function generateMetadata(
+  props: SearchMoviePageProps
+): Promise<Metadata> {
+  const { query } = await props.searchParams;
+
+  return {
+    title: query ? `Search results for ${query}` : 'Search Movies',
+    description: query ? `Search results for ${query}` : 'Search Movies',
+  };
+}
 
 export default function Page(props: SearchMoviePageProps) {
   return (

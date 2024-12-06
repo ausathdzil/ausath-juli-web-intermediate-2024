@@ -2,12 +2,27 @@ import EditReviewForm from '@/components/movies/edit-review-form';
 import UserReviewSkeleton from '@/components/skeletons/user-review-skeleton';
 import { getMovie } from '@/lib/data';
 import { getReviewById } from '@/lib/db/data';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
 type ReviewPageProps = {
   params: Promise<{ reviewId: string }>;
 };
+
+export async function generateMetadata(
+  props: ReviewPageProps
+): Promise<Metadata> {
+  const params = await props.params;
+  const { reviewId } = params;
+  const review = await getReviewById(reviewId);
+  const movie = await getMovie(review.movieId);
+
+  return {
+    title: `Edit Review for ${movie?.title}`,
+    description: 'Update your review',
+  };
+}
 
 export default function Page(props: ReviewPageProps) {
   return (

@@ -7,6 +7,12 @@ import {
   getUpcomingMovies,
 } from '@/lib/data';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Movies',
+  description: 'Discover new movies',
+};
 
 // Skeleton Loader component
 const SkeletonLoader = () => (

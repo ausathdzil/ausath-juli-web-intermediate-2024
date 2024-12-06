@@ -20,7 +20,10 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: 'Critix',
+  title: {
+    default: 'Critix',
+    template: '%s | Critix',
+  },
   description: 'A movie review website',
 };
 
@@ -52,4 +55,3 @@ export default function RootLayout({
     </html>
   );
 }
-

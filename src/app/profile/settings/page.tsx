@@ -1,5 +1,11 @@
 import UpdatePasswordForm from '@/components/settings/update-password-form';
 import UpdateProfileForm from '@/components/settings/update-profile-form';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Settings',
+  description: 'Change your account settings',
+};
 
 export default function Page() {
   return (

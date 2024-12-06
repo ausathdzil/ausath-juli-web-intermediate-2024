@@ -14,6 +14,7 @@ import { getMovie } from '@/lib/data';
 import { getMovieReviews } from '@/lib/db/data';
 import { ReviewWithUserName } from '@/lib/db/schema';
 import { verifySession } from '@/lib/session';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -22,6 +23,18 @@ import { Suspense } from 'react';
 type MoviePageProps = {
   params: Promise<{ movieId: number }>;
 };
+
+export async function generateMetadata(
+  props: MoviePageProps
+): Promise<Metadata> {
+  const { movieId } = await props.params;
+  const movie = await getMovie(movieId);
+
+  return {
+    title: movie?.title,
+    description: movie?.overview,
+  };
+}
 
 export default function Page(props: MoviePageProps) {
   return (
