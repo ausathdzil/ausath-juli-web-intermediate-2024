@@ -21,6 +21,7 @@ Final Project Study Club Web Intermediate KSM Android.
 - Validasi form pada sisi server menggunakan Zod dan React 19 Server Functions
 - Akses data user dimana saja dengan UserProvider menggunakan React createContext
 - Global middleware untuk melindungi halaman profil
+- Metadata untuk optimisasi SEO
 
 ## Run Locally
 
